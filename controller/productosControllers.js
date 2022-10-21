@@ -101,7 +101,8 @@ const deleteProductById = async (req, res) => {
         try {
             const id = req.params.id;
             await productsStorage.deleteById(id);
-            return res.json(`Se eliminó de forma correcta el ID:${id}`);
+
+            return res.redirect(`/api/productos`);
         } catch (err) {
             return res.status(404).json({
                 error: `Error al borrar un producto por id ${err}`
@@ -114,6 +115,19 @@ const deleteProductById = async (req, res) => {
     }
 }
 
+const viewUpdateProduct = (req, res) => {
+    const { idProduct, codigoProducto, nameProduct, descripcionProduct, precioProducto, stockProduct,urlProdcut } = req.body;
+    const product = {
+        id : idProduct,
+        codigo: codigoProducto,
+        nombre: nameProduct,
+        descripcion: descripcionProduct,
+        precio: precioProducto,
+        stock: stockProduct,
+        thumbnail :urlProdcut
+    }
+    return res.render(`modificarProducto`, { product });
+}
 
 module.exports = {
     getAllProducts,
@@ -121,5 +135,6 @@ module.exports = {
     addProduct,
     updateProductById,
     deleteProductById,
+    viewUpdateProduct
 };
 

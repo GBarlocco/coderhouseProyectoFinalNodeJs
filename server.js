@@ -20,6 +20,7 @@ dotenv.config();
 //app.use("/avatar", express.static("./public/avatar"));
 app.use(express.static(`./public`));
 app.use("/api", express.static("./public"));
+app.use("/api/productos", express.static("./public"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

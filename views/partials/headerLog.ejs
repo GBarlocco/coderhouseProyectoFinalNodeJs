@@ -1,40 +1,40 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
   <div class="container-fluid">
 
-    <a class="navbar-brand" href="#">Coderhouse</a>
+    <a class="navbar-brand" href="#">Las Tunicias</a>
 
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav me-auto mb-2 mb-md-0">
 
-        <li class="nav-item  %> ">
-          <a class="nav-link" href="/api/productos">All products</a>
+        <li class="nav-item  ">
+          <a class="nav-link" href="/api/productos">Tunas disponibles</a>
         </li>
 
         <% if(userLog.admin) { %>
-          <li class="nav-item   %> ">
-            <a class="nav-link" href="/formAddProduct">Add products</a>
+          <li class="nav-item "> 
+            <a class="nav-link" href="/formAddProduct">Agregar tuna</a>
           </li>
           <% } %>
 
-            <li class="nav-item  %> ">
-              <a class="nav-link" href="/api/carrito">Carrito</a>
+            <li class="nav-item ">
+              <a class="nav-link" href="/api/carrito">Mi carrito</a>
             </li>
 
-            <li class="nav-item  %> ">
+            <li class="nav-item ">
               <a class="nav-link" href="/chat/grupal">Chat Grupal</a>
             </li>
 
-            <li class="nav-item  %> ">
+            <li class="nav-item ">
               <a class="nav-link" href="/chat/individual">Chat</a>
             </li>
 
-            <li class="nav-item   %> ">
+            <li class="nav-item  ">
               <a class="nav-link" href="/profile">
                 <%= userLog.username %>
               </a>
             </li>
 
-            <li class="nav-item  %> ">
+            <li class="nav-item " >
               <a class="nav-link" href="/logout">Salir</a>
             </li>
 
