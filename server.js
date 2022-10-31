@@ -132,7 +132,7 @@ app.use(`/apiRestful/carrito`, carritoRouterJWT);
 app.use(`/apiRestful/ordenes`, ordenesRouterJWT);
 
 //Socket chat:
-socketIoChat(io);
+//socketIoChat(io);
 
 app.use((req, res) => {
     loggerConsole.warn(`
