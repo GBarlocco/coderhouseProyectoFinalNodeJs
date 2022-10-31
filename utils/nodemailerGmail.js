@@ -17,8 +17,6 @@ const transporter = createTransport({
 const sendEmail = async (options) => {
     try {
         const response = await transporter.sendMail(options);
-        console.log(response);
-
     } catch (e) {
         console.error(e);
     }

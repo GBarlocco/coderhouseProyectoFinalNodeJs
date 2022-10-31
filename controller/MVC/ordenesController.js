@@ -54,7 +54,7 @@ const auxEmail = async (userLog, orden) => {
 
     const mailOptions = {
         from: process.env.EMAIL,
-        to: `barlocco@hotmail.es`,
+        to: `${userLog.email}`,
         subject: `Nuevo pedido de: ${userLog.username}`,
         html: `
             <h3>Nuevo pedido!</h3>

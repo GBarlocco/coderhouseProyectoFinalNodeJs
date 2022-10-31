@@ -10,6 +10,9 @@ const parseArgs = require(`minimist`);
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
 const socketIoChat = require(`./sockets/socketChat`);
+const cluster = require(`cluster`);
+const os = require(`os`);
+const numCPUs = os.cpus().length;
 
 dotenv.config();
 
@@ -47,7 +50,7 @@ const args = parseArgs(process.argv.slice(2));
 app.set(`views`, `./views`);
 app.set(`view engine`, `ejs`);
 
-//Logg console / warm / error
+//Logg console / warm 
 const loggerConsole = log4js.getLogger(`default`);
 const loggerArchiveWarn = log4js.getLogger(`warnArchive`);
 const loggerArchiveError = log4js.getLogger(`errorArchive`);
@@ -106,7 +109,7 @@ const chatRouter = require(`./routes/MVC/chatRouter`);
 //Routers import API Restful
 const { loginJWTRouter } = require(`./routes/APIRestFul/userRouterJWT`);
 const { registerJWTRouter } = require(`./routes/APIRestFul/userRouterJWT`);
-const productosRouterJWT = require(`./routes/APIRestFul/productosRouterJWT`); 
+const productosRouterJWT = require(`./routes/APIRestFul/productosRouterJWT`);
 const ordenesRouterJWT = require(`./routes/APIRestFul/ordenesRouterJWT`);
 const carritoRouterJWT = require(`./routes/APIRestFul/carritoRouterJWT`);
 
