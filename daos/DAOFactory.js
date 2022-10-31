@@ -5,9 +5,7 @@ const MessagesDAOMongoDB = require(`./mensajes/MessageDAOMongoDB`);
 
 const getStorage = () => {
     const storage = `MongoDb`;
-
     switch (storage) {
-
         case `MongoDB`:
             return {
                 productos: new ProductosDAOMongoDB(),

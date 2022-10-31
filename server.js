@@ -57,7 +57,7 @@ const loggerArchiveError = log4js.getLogger(`errorArchive`);
 
 //Run server
 const CLUSTER = args.CLUSTER;
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 8090;
 
 const runServer = (PORT) => {
     httpServer.listen(PORT, () => loggerConsole.debug(`Servidor escuchando el puerto ${PORT}`));
