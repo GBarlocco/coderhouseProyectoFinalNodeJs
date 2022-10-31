@@ -4,7 +4,8 @@
   "description": "A continuación se detalla la documentación de la primer entrega del proyecto eCommerce - API RESTful",
   "main": "main.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "node index.js",
+    "app": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
