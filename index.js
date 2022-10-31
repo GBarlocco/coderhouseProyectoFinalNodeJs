@@ -9,7 +9,7 @@ const dotenv = require(`dotenv`);
 const parseArgs = require(`minimist`);
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
-const socketIoChat = require(`./sockets/socketChat`);
+//const socketIoChat = require(`./sockets/socketChat`);
 const cluster = require(`cluster`);
 const os = require(`os`);
 const numCPUs = os.cpus().length;
@@ -132,7 +132,7 @@ app.use(`/apiRestful/carrito`, carritoRouterJWT);
 app.use(`/apiRestful/ordenes`, ordenesRouterJWT);
 
 //Socket chat:
-socketIoChat(io);
+//socketIoChat(io);
 
 app.use((req, res) => {
     loggerConsole.warn(`
