@@ -1,7 +1,7 @@
-const ProductosDAOMongoDB = require(`../daos/productos/ProductosDAOMongoDB`);
-const CarritoDAOMongoDB = require(`../daos/carritos/CarritoDAOMongoDB`);
+const ProductosDAOMongoDB = require(`./productos/ProductosDAOMongoDB`);
+const CarritoDAOMongoDB = require(`./carritos/CarritoDAOMongoDB`);
 const OrdenesDAOMongoDB = require(`./ordenes/OrdenesDAOMongoDB`);
-const MessagesDAOMongoDB = require(`../daos/mensajes/MessageDAOMongoDB`);
+const MessagesDAOMongoDB = require(`./mensajes/MessageDAOMongoDB`);
 
 const getStorage = () => {
     //const storage = process.env.STORAGE;

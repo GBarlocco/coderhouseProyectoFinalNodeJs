@@ -1,5 +1,5 @@
-const storage = require(`../daos/index`);
-
+const storage = require(`../../DAOs/DAOFactory`);
+const ProductoDTO = require('../../DTOs/ProductoDTO');
 const productsStorage = storage().productos;
 
 const addProduct = async (req, res) => {
@@ -7,20 +7,18 @@ const addProduct = async (req, res) => {
         try {
             const name = req.body.nombre;
             const price = Number(req.body.precio);
-            const url = req.body.thumbnail;
+            const url = req.body.link;
             const description = req.body.descripcion;
             const date = new Date().toDateString();
-            const code = Number(req.body.codigo);
-            const stock = Number(req.body.stock);
+            const category = req.body.categoria;
 
             const newProducto = {
                 timestamp: date,
                 nombre: `${name}`,
                 descripcion: `${description}`,
-                codigo: code,
-                thumbnail: `${url}`,
+                link: `${url}`,
                 precio: price,
-                stock: stock,
+                categoria: category,
                 cantidad: 0
             };
             const id = await productsStorage.save(newProducto);
@@ -36,38 +34,44 @@ const addProduct = async (req, res) => {
             error: `Ruta no permitida, no es usuario con perfil administrador.`
         });
     }
-}
+};
 
 const getAllProducts = async (req, res) => {
     try {
         userLog = req.user;
         let allProducts = await productsStorage.getAll();
-        return res.render(`productos`, { allProducts, userLog });
+
+        //Normalizo los datos:
+        const allProductsDTO = allProducts.map(product => new ProductoDTO(product));
+
+        return res.render(`productos`, { allProductsDTO, userLog });
     } catch (err) {
         return res.status(404).json({
             error: `Error al obtener todos los productos${err}`
         });
     }
-}
+};
 
 const getProductById = async (req, res) => {
     try {
-        let idCart = req.params.id;
-        let productbyId = await productsStorage.getById(idCart);
+        let id = req.params.id;
+        let productbyId = await productsStorage.getById(id);
 
-        if (!productbyId) {
+        //Normalizo los datos:
+        const productbyIdDTO = new ProductoDTO(productbyId);
+
+        if (!productbyIdDTO) {
             return res.status(404).json({
                 error: `Error producto no encontrado`
             });
         } else {
-            return res.render(`productosById`, { productbyId });
+            return res.render(`productosById`, { productbyIdDTO });
         }
     } catch (err) {
-        return res.status(404).json({
-            error: `Error al obtener el producto por id ${err}`
-        });
+        let msgError = `El ID ingresado no existe`;
+        return res.render(`viewError`, { msgError });
     }
-}
+};
 
 const updateProductById = async (req, res) => {
     if (userLog.admin) {
@@ -75,13 +79,12 @@ const updateProductById = async (req, res) => {
             const idProduct = req.params.id;
             const name = req.body.nombre;
             const price = Number(req.body.precio);
-            const url = req.body.thumbnail;
+            const url = req.body.link;
             const description = req.body.descripcion;
             const date = new Date().toDateString();
-            const code = Number(req.body.codigo);
-            const stock = Number(req.body.stock);
+            const categoria = req.body.categoria;
 
-            await productsStorage.updateById(idProduct, name, price, url, description, date, code, stock);
+            await productsStorage.updateById(idProduct, name, price, url, description, date, categoria);
 
             return res.json(`Se actualizó el producto `);
         } catch (err) {
@@ -94,7 +97,7 @@ const updateProductById = async (req, res) => {
             error: `Ruta no permitida, no es usuario con perfil administrador.`
         });
     }
-}
+};
 
 const deleteProductById = async (req, res) => {
     if (userLog.admin) {
@@ -113,21 +116,42 @@ const deleteProductById = async (req, res) => {
             error: `Ruta no permitida, no es usuario con perfil administrador.`
         });
     }
-}
+};
 
 const viewUpdateProduct = (req, res) => {
-    const { idProduct, codigoProducto, nameProduct, descripcionProduct, precioProducto, stockProduct,urlProdcut } = req.body;
+    const { idProduct, nameProduct, descripcionProduct, precioProducto, categoryProduct, linkProduct } = req.body;
     const product = {
-        id : idProduct,
-        codigo: codigoProducto,
+        id: idProduct,
         nombre: nameProduct,
         descripcion: descripcionProduct,
         precio: precioProducto,
-        stock: stockProduct,
-        thumbnail :urlProdcut
+        categoria: categoryProduct,
+        link: linkProduct
     }
     return res.render(`modificarProducto`, { product });
-}
+};
+
+const getProductsBtCategory = async (req, res) => {
+    try {
+        const userLog = req.user;
+        const category = req.params.categoria;
+        const allProducts = await productsStorage.getAll();
+        const allProductsDTO = [];
+
+        //Normalizo los datos:
+        allProducts.forEach(product => {
+            if (product.categoria == category) {
+                allProductsDTO.push(new ProductoDTO(product));
+            }
+        });
+
+        return res.render(`productosByCategory`, { allProductsDTO, userLog });
+    } catch (err) {
+        return res.status(404).json({
+            error: `Error al obtener todos los productos${err}`
+        });
+    }
+};
 
 module.exports = {
     getAllProducts,
@@ -135,6 +159,7 @@ module.exports = {
     addProduct,
     updateProductById,
     deleteProductById,
-    viewUpdateProduct
+    viewUpdateProduct,
+    getProductsBtCategory
 };
 

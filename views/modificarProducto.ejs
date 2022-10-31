@@ -6,26 +6,25 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
             integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
         <link rel="stylesheet" href="./template1.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <script>
     const udpateProduct = async () => {
         const id = document.getElementById("idProduct").value;
-        const codigo = document.getElementById("codigoProduct").value;
         const nombre = document.getElementById("idNombreProduct").value;
         const descripcion = document.getElementById("idDescripcionProduct").value;
         const precio = Number(document.getElementById("idPrecioProduct").value);
-        const stock = Number(document.getElementById("idStockProduct").value);
-        const thumbnail = document.getElementById("idThumbnailProduct").value;
+        const link = document.getElementById("idLinkProduct").value;
+        const categoria = document.getElementById("idCategoryProduct").value;
 
         const product = {
             id, //id:id
-            codigo,
             nombre,
             descripcion,
             precio,
-            stock,
-            thumbnail
+            categoria,
+            link
         };
 
         const response = await fetch(`/api/productos/${id}`, {
@@ -53,31 +52,27 @@
                 <div class="col-12 col-md-8 col-lg-6 col-xl-12">
                     <div class="card bg-dark text-white" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
-                            <h2 class="fw-bold mb-2 text-uppercase">¡Modificar tuna!</h2>
+                            <h3 class="fw-bold mb-2 text-uppercase">¡Modificar tuna!</h3>
+                            <br>
 
                             <table class="table table-dark">
                                 <thead>
                                     <tr>
                                         <th scope="col">ID</th>
-                                        <th scope="col">Código</th>
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Descripcion</th>
                                         <th scope="col">Precio</th>
-                                        <th scope="col">Stock</th>
+                                        <th scope="col">Categoría</th>
                                         <th scope="col">Imagen</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <input class="form-control form-control-lg" disabled id="idProduct"
-                                                type="text" value="<%= product.id %>">
+                                            <input style="width : 280px" class="form-control form-control-lg" disabled
+                                                id="idProduct" type="text" value="<%= product.id %>">
                                         </td>
 
-                                        <td>
-                                            <input class="form-control form-control-lg" disabled id="codigoProduct"
-                                                type="text" value="<%= product.codigo %>">
-                                        </td>
 
                                         <td>
                                             <input class="form-control form-control-lg" id="idNombreProduct" type="text"
@@ -95,20 +90,20 @@
                                         </td>
 
                                         <td>
-                                            <input class="form-control form-control-lg" id="idStockProduct"
-                                                type="number" value="<%= product.stock %>">
+                                            <input class="form-control form-control-lg" id="idCategoryProduct"
+                                                type="text" value="<%= product.categoria %>">
                                         </td>
 
                                         <td>
-                                            <input class="form-control form-control-lg" id="idThumbnailProduct"
-                                                type="text" value="<%= product.thumbnail %>">
-                                            <img src="<%= product.thumbnail %>" width="60" height="60">
+                                            <input class="form-control form-control-lg" id="idLinkProduct" type="text"
+                                                value="<%= product.link %>">
+                                            <img src="<%= product.link %>" width="60" height="60">
                                         <td>
 
-
                                         <td>
-                                            <button class="btn btn-success" onclick=udpateProduct()>Modificar
-                                                tuna!</button>
+                                            <button class="btn btn-success" onclick=udpateProduct()>
+                                                Modificar tuna!
+                                            </button>
                                         </td>
                                         </td>
                                     </tr>
@@ -120,8 +115,6 @@
             </div>
         </div>
     </section>
-
-
 </body>
 
 </html>

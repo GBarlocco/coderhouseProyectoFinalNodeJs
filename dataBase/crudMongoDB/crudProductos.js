@@ -51,18 +51,17 @@ class Contenedor {
     }
 
 
-    async updateById(idProduct, name, price, url, description, date, code, stock) {
+    async updateById(idProduct, name, price, url, description, date, categoria) {
 
         this.mongoDB
             .then(_ => this.productsModel.findOne({ _id: idProduct }, { __v: 0 }))
             .then(product => {
                 product.nombre = name;
                 product.precio = price;
-                product.url = url;
+                product.link = url;
                 product.descripcion = description;
                 product.date = date;
-                product.codigo = code;
-                product.stock = stock;
+                product.categoria = categoria;
 
                 return product.save();
             })

@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
-const storage = require(`../daos/index`);
+const storage = require(`../DAOs/DAOFactory`);
+const MessageDTO = require(`../DTOs/MessageDTO`);
 const storageMessages = storage().mensajes;
 
 //Instancia contenedores:
@@ -17,15 +18,17 @@ const socketIoChat = (io) => {
                 aliasName: aliasName,
                 avatar: "https://cdn-icons-png.flaticon.com/512/456/456141.png"
             });
-            console.log(aliasName);
 
             //Servidor --> Cliente : bienvenida al usuario que se conecta.
             socket.emit(`notification`, `Bienvenido ${aliasName}`);
 
             const allMessageFromDB = await storageMessages.getAll();
 
+             //Normalizo los datos:
+            const allMessageDTO = allMessageFromDB.map(message => new MessageDTO(message));
+
             //Servidor --> Cliente : Se envian todos los mensajes al usuario que se conectó.
-            socket.emit(`allMenssage`, allMessageFromDB);
+            socket.emit(`allMenssage`, allMessageDTO);
 
 
             //Servidor --> Cliente : bienvenida a todos los usuarios menos al que inicio la conexión:
@@ -37,21 +40,13 @@ const socketIoChat = (io) => {
 
         //Cliente --> Servidor: messageInput event
         socket.on(`messageInput`, async data => {
+            let date = new Date();
             const user = users.find(user => user.id === socket.id);
 
             const newMessage = {
-                author: {
-                    id: user.aliasName,
-                    nombre: `Hard-code: Nombre del usuario`,
-                    apellido: `Hard-code: Apellido del usuario`,
-                    edad: `Hard-code: Edad`,
-                    alias: `Hard-code: alias del usuario`,
-                    avatar: `Hard-code: url avatar`
-                },
-                text: {
-                    id: mongoose.Types.ObjectId(),
-                    mensaje: data,
-                }
+                autor: user.aliasName,
+                text:data,
+                timestamp:date
             }
 
             await storageMessages.save(newMessage);

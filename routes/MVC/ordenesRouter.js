@@ -2,8 +2,8 @@ const { Router } = require("express");
 
 const {
     viewOrdenesController,
-    createOrdenController
-} = require("../controller/ordenesController");
+    createOrdenController,
+} = require("../../controller/MVC/ordenesController");
 
 const ordenesRouter = Router();
 

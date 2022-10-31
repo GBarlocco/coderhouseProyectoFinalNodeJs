@@ -14,10 +14,9 @@ const logoutController = (req, res) => {
             }
         });
     }
-}
+};
 
 const profileController = (req, res) => {
-    //userLog = req.user.username;
     userLog = req.user;
     res.render(`profile`, { userLog })
 };

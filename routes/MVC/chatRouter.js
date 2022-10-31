@@ -4,7 +4,7 @@ const {
     getChat,
     chatIndividual,
     chatGrupal,
-} = require(`../controller/chatController`);
+} = require(`../../controller/MVC/chatController`);
 
 const chatRouter = Router();
 

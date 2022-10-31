@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
             integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
         <link rel="stylesheet" href="./template1.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <script>
@@ -33,33 +34,25 @@
                 <div class="col-12 col-md-8 col-lg-6 col-xl-12">
                     <div class="card bg-dark text-white" style="border-radius: 1rem;">
                         <div class="card-body p-5 text-center">
-                            <h2 class="fw-bold mb-2 text-uppercase">¡Tunas disponibles!</h2>
-                            <% if (allProducts.length <=0) { %>
+                            <h3 class="fw-bold mb-2 text-uppercase">¡Tunas disponibles!</h3>
+                            <br>
+                            
+                            <% if (allProductsDTO.length <=0) { %>
                                 <p>No tenemos tunas disponibles! :(</p>
                                 <% } else { %>
                                     <table class="table table-dark">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Código</th>
                                                 <th scope="col">Nombre</th>
                                                 <th scope="col">Descripcion</th>
                                                 <th scope="col">Precio</th>
-                                                <th scope="col">Stock</th>
+                                                <th scope="col">Categoría</th>
                                                 <th scope="col">Imagen</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <% allProducts.forEach(product=>{ %>
+                                            <% allProductsDTO.forEach(product=>{ %>
                                                 <tr>
-                                                    <!--
-                                                    <td scope="row">
-                                                        <%= product.id %>
-                                                    </td>
-                                                        
-                                                    -->
-                                                    <td>
-                                                        <%= product.codigo %>
-                                                    </td>
                                                     <td>
                                                         <%= product.nombre %>
                                                     </td>
@@ -70,44 +63,42 @@
                                                         $<%= product.precio %>
                                                     </td>
                                                     <td>
-                                                        <%= product.stock %>
+                                                        <%= product.categoria %>
                                                     </td>
                                                     <td>
-                                                        <img src="<%= product.thumbnail %>" width="60" height="60">
+                                                        <img src="<%= product.link %>" width="60" height="60">
+                                                    </td>
+                                                    <td>
+                                                        <form action="/api/productos/<%= product.id %>" method="GET">
+                                                            <button class="btn btn-info" type="submit">
+                                                                ver tuna
+                                                            </button>
+                                                        </form>
                                                     </td>
                                                     <td>
                                                         <form action="/api/carrito/addProduct" method="POST">
-                                                            <input type="hidden" name="idUser" value=<%=userLog._id %>
-                                                            />
-                                                            <input type="hidden" name="idProduct" value=<%=product.id %>
-                                                            />
-                                                            <button class="btn btn-primary" type="submit">¡Agregar al
-                                                                carrito!</button>
+                                                            <input type="hidden" name="idUser" value=<%=userLog._id %> />
+                                                            <input type="hidden" name="idProduct" value=<%=product.id %> />
+                                                            <button class="btn btn-primary" type="submit">
+                                                                ¡Agregar alcarrito!
+                                                            </button>
                                                         </form>
                                                     </td>
-
-
+                                                    
                                                     <% if(userLog.admin) { %>
                                                         
-
                                                     <td>
                                                         <form action="/api/productos/modificar" method="POST">
-                                                            <input type="hidden" name="codigoProducto" value=<%= product.codigo %>
-                                                            />
-                                                            <input type="hidden" name="idProduct" value=<%= product.id %>
-                                                            />
-                                                            <input type="hidden" name="nameProduct" value=<%= product.nombre  %>
-                                                            />
-                                                            <input type="hidden" name="descripcionProduct" value=<%= product.descripcion %>
-                                                            />
-                                                            <input type="hidden" name="precioProducto" value=<%= product.precio %>
-                                                            />
-                                                            <input type="hidden" name="stockProduct" value=<%= product.stock %>
-                                                            />
-                                                            <input type="hidden" name="urlProdcut" value=<%= product.thumbnail %>
-                                                            />
-                                                            <button class="btn btn-success"
-                                                                type="submit">Modificar tuna</button>
+                                                            <input type="hidden" name="idProduct" value=<%= product.id %> />
+                                                            <input type="hidden" name="nameProduct" value=<%= product.nombre  %> />
+                                                            <input type="hidden" name="descripcionProduct" value=<%= product.descripcion %> />
+                                                            <input type="hidden" name="precioProducto" value=<%= product.precio %> />
+                                                            <input type="hidden" name="categoryProduct" value=<%= product.categoria %> />
+                                                            <input type="hidden" name="linkProduct" value=<%= product.link %> />
+
+                                                            <button class="btn btn-success"type="submit">
+                                                                Modificar tuna
+                                                            </button>
                                                         </form>
                                                     </td>
                                                         <td>
@@ -128,6 +119,7 @@
             </div>
         </div>
     </section>
+
 
 
 </body>

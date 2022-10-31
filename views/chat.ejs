@@ -10,6 +10,7 @@
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./templateChat.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -41,8 +42,9 @@
                                         <input id="messageInput" minlength="3" type="text" class="form-control"
                                             placeholder="Enter text here...">
                                         <div class="input-group-prepend">
-                                            <button id="sendMessage" class="input-group-text"><i
-                                                    class="fa fa-send"></i></span>
+                                            <button id="sendMessage" class="input-group-text">
+                                                <i class="fa fa-send"></i>
+                                            </span>
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +55,6 @@
             </div>
         </div>
     </div>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qs/6.10.3/qs.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>

@@ -6,13 +6,15 @@ const {
   addProduct,
   updateProductById,
   deleteProductById,
-  viewUpdateProduct
-} = require("../controller/productosControllers");
+  viewUpdateProduct,
+  getProductsBtCategory
+} = require("../../controller/MVC/productosControllers");
 
 const productosRouter = Router();
 
 productosRouter.get(`/`, getAllProducts);
 productosRouter.get(`/:id`, getProductById);
+productosRouter.get(`/categoria/:categoria`, getProductsBtCategory);
 productosRouter.post(`/modificar`, viewUpdateProduct);
 productosRouter.post(`/`, addProduct);
 productosRouter.put(`/:id`, updateProductById);

@@ -6,10 +6,7 @@ class Contenedor {
 
     async save(message) {
         try {
-            // Instancia del modelo message
             const newMessage = new this.messageModel(message);
-
-            console.log('estoy desde MongoDB');
 
             this.mongoDB
                 .then(_ => newMessage.save())
@@ -33,5 +30,23 @@ class Contenedor {
             throw Error(`Error en getAll`);
         }
     }
+
+    async getById(idUsuario) {
+        try {
+            let doc = false;
+            console.log(idUsuario);
+            doc = await this.messageModel.find({ autor: idUsuario }, { __v: 0 });
+
+            console.log(doc)
+            if (doc) {
+                return doc;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            throw Error(`Error en getById message`);
+        }
+    }
+
 }
 module.exports = Contenedor;

@@ -3,8 +3,8 @@ class Contenedor {
         this.mongoDB = mongoDB;
         this.productsModel = productsModel;
         this.userModel = userModel,
-            this.ordenModel = ordenModel
-    }
+        this.ordenModel = ordenModel
+    };
 
     async createOrden(idOwner) {
         let docUser = false;
@@ -19,7 +19,7 @@ class Contenedor {
             let newOrden = {
                 timestamp: date,
                 products: productsOrden,
-                idOwner: idOwner
+                owner: [idOwner,docUser.username]
             };
             await docUser.save();
 
@@ -34,7 +34,20 @@ class Contenedor {
         } else {
             throw Error(`Error al acceder al usuario`);
         }
+    };
 
+    async getAll() {
+        try {
+            let docs = false;
+            docs = await this.ordenModel.find();
+            if (docs) {
+                return docs;
+            } else {
+                return false;
+            }
+        } catch (error) {
+            throw Error(`Error en getAll ordenes`);
+        }
     }
 
 }

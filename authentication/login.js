@@ -1,12 +1,8 @@
 const passport = require('passport');
-
 const LocalStrategy = require('passport-local').Strategy;
 const UserModel = require(`../dataBase/models/user`);
-
 const { isValidPassword } = require('../utils/utils');
-
 const log4js = require('../utils/logs');
-
 const loggerArchiveError = log4js.getLogger(`errorArchive`);
 
 const login = () => {
@@ -16,7 +12,6 @@ const login = () => {
     en nuestro modelo para ingresar a la DB tenemos también email, entonces, para obtener el
     email indicamos que queremos recibir todo el req.
     */
-
     passport.use('login', new LocalStrategy({
         //Configuración para obtener todo el req.
         passReqToCallback: true

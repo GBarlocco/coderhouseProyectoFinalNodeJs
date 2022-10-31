@@ -22,17 +22,15 @@ socket.on(`notification`, data => {
 
 //Servidor --> Cliente: El servidor envía todos los mensajes al usuario que se conecta.
 socket.on(`allMenssage`, data => {
-    console.log(`Estoy desde el sevidor: mensajes recibidos:`);
-    console.log(data);
 
     const message = "";
     data.forEach(message => {
         message = `
             <li class="clearfix">
             <div class="message-data text-right">
-                    <span class="message-data-time">${message.author.id}:</span>
+                    <span class="message-data-time">${message.id}:</span>
                 </div>
-                <div class="message other-message float-right"> ${message.text.mensaje} </div>
+                <div class="message other-message float-right"> ${message.mensaje} </div>
             </li>
         `;
         messagesContainer.innerHTML += message;
@@ -71,9 +69,9 @@ socket.on(`message`, data => {
     const message = `
         <li class="clearfix">
         <div class="message-data text-right">
-                <span class="message-data-time">${data.author.id}:</span>
+                <span class="message-data-time">${data.autor}:</span>
             </div>
-            <div class="message other-message float-right"> ${data.text.mensaje} </div>
+            <div class="message other-message float-right"> ${data.text} </div>
         </li>
     `
     messagesContainer.innerHTML += message;

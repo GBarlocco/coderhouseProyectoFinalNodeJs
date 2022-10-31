@@ -1,10 +1,8 @@
-const storage = require(`../daos/index`);
-
+const storage = require(`../../DAOs/DAOFactory`);
 const ordenesStorage = storage().ordenes;
-
-const sendEmail = require(`../utils/nodemailerGmail`);
-const sendSMS = require('../utils/twilioSMS');
-const sendWhatsApp = require('../utils/twilioWhatsApp');
+const sendEmail = require(`../../utils/nodemailerGmail`);
+const sendSMS = require('../../utils/twilioSMS');
+const sendWhatsApp = require('../../utils/twilioWhatsApp');
 
 const createOrdenController = async (req, res) => {
     try {
@@ -29,9 +27,25 @@ const createOrdenController = async (req, res) => {
     }
 };
 
-const viewOrdenesController = (req, res) => {
-    return res.send(`Estoy en viewOrdenes`);
-}
+const viewOrdenesController = async (req, res) => {
+    try {
+        let allOrdenes = await ordenesStorage.getAll();
+
+        //Normalizo los datos:
+        //const allProductsDTO = allProducts.map(product => new ProductoDTO(product));
+
+        return res.status(200).send({
+            success: true,
+            ordenes: allOrdenes
+        });
+
+    } catch (err) {
+        return res.status(404).send({
+            success: false,
+            message: `Error al obtener las ordenes`
+        });
+    }
+};
 
 const auxEmail = async (userLog, orden) => {
     let detallePedido = ``;
@@ -62,7 +76,6 @@ const auxEmail = async (userLog, orden) => {
         `
     };
     const email = await sendEmail(mailOptions);
-    console.log(email);
 }
 
 const auxWhatsApp = async (userLog, orden) => {
@@ -90,5 +103,5 @@ const auxWhatsApp = async (userLog, orden) => {
 
 module.exports = {
     viewOrdenesController,
-    createOrdenController
+    createOrdenController,
 };

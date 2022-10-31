@@ -1,42 +1,8 @@
 class Contenedor {
-    constructor(mongoDB, cartModel, productsModel, userModel) {
+    constructor(mongoDB, productsModel, userModel) {
         this.mongoDB = mongoDB;
-        this.cartModel = cartModel;
         this.productsModel = productsModel;
         this.userModel = userModel
-    }
-
-    async createCart() {
-        let date = new Date();
-        let newCart = {
-            timestamp: date,
-            products: [],
-        };
-        const cart = new this.cartModel(newCart);
-
-        this.mongoDB
-            .then(_ => cart.save())
-            .then(document => console.log(document))
-            .catch(err => console.log(`Error: ${err.message}`));
-    }
-
-    async getProductsByID(idCart) {
-        let docs = false
-        docs = await this.cartModel.findOne({ _id: idCart }, { __v: 0 });
-        if (docs) {
-            return docs.products;
-        } else {
-            return false;
-        }
-    }
-
-    async deleteCartById(idCart) {
-        this.mongoDB
-            .then(_ => this.cartModel.deleteOne({
-                _id: idCart
-            }))
-            .then(result => console.log(result))
-            .catch(err => console.log(`Error: ${err.message}`))
     }
 
     async addProduct(idUser, idProduct) {
@@ -76,7 +42,6 @@ class Contenedor {
         }
     }
 
-
     async deleteProductById(idUser, idProduct) {
         let docUser = false;
         let docProduct = false;
@@ -103,5 +68,6 @@ class Contenedor {
             throw Error(`Error al acceder al id del carrito / producto`);
         }
     }
-}
+};
+
 module.exports = Contenedor;

@@ -1,12 +1,9 @@
 const passport = require('passport');
 const sendEmail = require(`../utils/nodemailerGmail`);
-
 const dotenv = require(`dotenv`);
 dotenv.config();
-
 const LocalStrategy = require('passport-local').Strategy;
 const UserModel = require(`../dataBase/models/user`);
-
 const { createHash } = require('../utils/utils');
 
 const signup = () => {
@@ -19,7 +16,6 @@ const signup = () => {
             if (user) {
                 return done(null, false);
             }
-
             const newUser = new UserModel();
             newUser.username = username;
             newUser.password = createHash(password); //No se puede volver a conocer la contraseña luego de realizarle el hash
@@ -49,9 +45,7 @@ const signup = () => {
             };
 
             const userSave = await newUser.save();
-
             const email = await sendEmail(mailOptions);
-
             return done(null, userSave);
         }
         catch (err) {

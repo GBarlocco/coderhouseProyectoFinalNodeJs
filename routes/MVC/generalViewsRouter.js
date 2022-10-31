@@ -5,8 +5,10 @@ const {
     signupController,
     bienvenidaController,
     viewFormAddProductController,
+    viewDataServerController,
+    sobreNosotrosController,
     viewErrorController
-} = require(`../controller/generalViewsCotroller`);
+} = require(`../../controller/MVC/generalViewsCotroller`);
 
 const viewsRouter = Router();
 
@@ -24,5 +26,7 @@ viewsRouter.get(`/`, homeController);
 viewsRouter.get(`/signup`, signupController);
 viewsRouter.get('/bienvenida',isLogged, bienvenidaController);
 viewsRouter.get('/formAddProduct',isLogged, viewFormAddProductController);
+viewsRouter.get('/serverData',isLogged, viewDataServerController);
+viewsRouter.get('/sobreNosotros', sobreNosotrosController);
 viewsRouter.get('/error/:msg', viewErrorController);
 module.exports = viewsRouter;

@@ -1,28 +1,29 @@
 const express = require(`express`);
 const { Server: HttpServer } = require(`http`);
 const { Server: IOServer } = require(`socket.io`);
-
 const app = express();
-
 const passport = require('passport');
 const log4js = require('./utils/logs');
 const MongoStore = require(`connect-mongo`);
 const dotenv = require(`dotenv`);
 const parseArgs = require(`minimist`);
-
 const httpServer = new HttpServer(app);
 const io = new IOServer(httpServer);
-
 const socketIoChat = require(`./sockets/socketChat`);
 
 dotenv.config();
 
-//app.use("/avatar", express.static("./public/avatar"));
 app.use(express.static(`./public`));
 app.use("/api", express.static("./public"));
+app.use("/error", express.static("./public"));
 app.use("/api/productos", express.static("./public"));
+app.use("/chat/individual", express.static("./public"));
+app.use("/api/productos/categoria", express.static("./public"));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(passport.initialize());
 
 const session = require('express-session');
 
@@ -37,7 +38,7 @@ app.use(session({
     saveUninitialized: true,
     cookie: { maxAge: 600000 }
 }));
-app.use(passport.initialize());
+
 app.use(passport.session());
 
 const args = parseArgs(process.argv.slice(2));
@@ -46,45 +47,30 @@ const args = parseArgs(process.argv.slice(2));
 app.set(`views`, `./views`);
 app.set(`view engine`, `ejs`);
 
-//Middlewares
+//Logg console / warm / error
 const loggerConsole = log4js.getLogger(`default`);
 const loggerArchiveWarn = log4js.getLogger(`warnArchive`);
 const loggerArchiveError = log4js.getLogger(`errorArchive`);
 
-/*
-const PORT = process.env.PORT || 8080;
-
-const server = app.listen(PORT, () => console.log(`Servidor HHTP escuchando puerto ${PORT}`));
-
-server.on(`error`, err => console.log(`error en el servidor ${err}`));
-*/
-
-// Servidor: modo CLUSTER / FORK
-//nodemon server --> ejecuta en puerto 8080
-//nodemon server -p xxxx --> ejecuta en puerto xxxx
-
+//Run server
 const CLUSTER = args.CLUSTER;
-
 const PORT = process.env.PORT || 8080;
+
 const runServer = (PORT) => {
     httpServer.listen(PORT, () => loggerConsole.debug(`Servidor escuchando el puerto ${PORT}`));
 }
 
 if (CLUSTER) {
     if (cluster.isMaster) {
-
         for (let i = 0; i < numCPUs; i++) {
             cluster.fork();
         }
-
         cluster.on(`exit`, (worker, code, signal) => {
             cluster.fork();
         });
-
     } else {
         runServer(PORT);
     }
-
 } else {
     runServer(PORT);
 }
@@ -96,7 +82,7 @@ app.use((req, res, next) => {
     next();
 });
 
-//My middleware
+//Log session
 const isLogged = ((req, res, next) => {
     let msgError = `Para acceder a esta URL debe iniciar sesión`
     if (req.user) {
@@ -106,18 +92,25 @@ const isLogged = ((req, res, next) => {
     }
 });
 
-//Routers import
-const productosRouter = require(`./routes/productosRouter`);
-const carritoRouter = require(`./routes/carritoRouter`);
-const { loginRouter } = require(`./routes/userRouter`);
-const { signupRouter } = require(`./routes/userRouter`);
-const { logoutRouter } = require(`./routes/userRouter`);
-const { profileRouter } = require(`./routes/userRouter`);
-const generalViewsRouter = require(`./routes/generalViewsRouter`);
-const ordenesRouter = require(`./routes/ordenesRouter`);
-const chatRouter = require(`./routes/chatRouter`);
+//Routers import MVC
+const productosRouter = require(`./routes/MVC/productosRouter`);
+const carritoRouter = require(`./routes/MVC/carritoRouter`);
+const { loginRouter } = require(`./routes/MVC/userRouter`);
+const { signupRouter } = require(`./routes/MVC/userRouter`);
+const { logoutRouter } = require(`./routes/MVC/userRouter`);
+const { profileRouter } = require(`./routes/MVC/userRouter`);
+const generalViewsRouter = require(`./routes/MVC/generalViewsRouter`);
+const ordenesRouter = require(`./routes/MVC/ordenesRouter`);
+const chatRouter = require(`./routes/MVC/chatRouter`);
 
-//Routers
+//Routers import API Restful
+const { loginJWTRouter } = require(`./routes/APIRestFul/userRouterJWT`);
+const { registerJWTRouter } = require(`./routes/APIRestFul/userRouterJWT`);
+const productosRouterJWT = require(`./routes/APIRestFul/productosRouterJWT`); 
+const ordenesRouterJWT = require(`./routes/APIRestFul/ordenesRouterJWT`);
+const carritoRouterJWT = require(`./routes/APIRestFul/carritoRouterJWT`);
+
+//Routers MVC
 app.use(`/`, generalViewsRouter);
 app.use(`/api/productos`, isLogged, productosRouter);
 app.use(`/api/carrito`, isLogged, carritoRouter);
@@ -127,6 +120,13 @@ app.use(`/login`, loginRouter);
 app.use(`/signup`, signupRouter);
 app.use('/logout', isLogged, logoutRouter);
 app.use(`/profile`, isLogged, profileRouter);
+
+//Routers API Restful
+app.use(`/apiRestful/login`, loginJWTRouter);
+app.use(`/apiRestful/signup`, registerJWTRouter);
+app.use(`/apiRestful/productos`, productosRouterJWT);
+app.use(`/apiRestful/carrito`, carritoRouterJWT);
+app.use(`/apiRestful/ordenes`, ordenesRouterJWT);
 
 //Socket chat:
 socketIoChat(io);
@@ -141,7 +141,5 @@ app.use((req, res) => {
     const msgError = `Estado: 404, Ruta consultada: ${req.originalUrl}, Metodo ${req.method}`;
 
     res.render(`viewError`, { msgError });
-
-    //res.status(404).json({ error: -2, descripcion: `ruta ${req.originalUrl} metodo ${req.method} no implementada` });
 });
 
