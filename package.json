@@ -7,8 +7,8 @@
     "node" : "v16.4.0"
   },
   "scripts": {
-    "start": "node index.js",
-    "app": "node index.js",
+    "start": "node server.js",
+    "app": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
