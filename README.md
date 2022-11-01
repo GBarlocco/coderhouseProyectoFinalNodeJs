@@ -1,8 +1,8 @@
 # LAS TUNICIAS  :cactus:
 
-*<p>[DEMO](https://lastuniciascoderhouse.herokuapp.com)*</p>
-*<p>[VIDEO MVC](https://youtube.com/watch?v=OtUsP7-1rp8)*</p>
-*<p>[VIDEO API Restul](https://youtube.com/watch?v=OtUsP7-1rp8)*</p>
+:computer:*<p>[DEMO](https://lastuniciascoderhouse.herokuapp.com)*</p>
+:video_camera:*<p>[VIDEO MVC](https://www.youtube.com/watch?v=roemn-Nfejo&t=15s)*</p>
+:video_camera:*<p>[VIDEO API Restul](https://www.youtube.com/watch?v=0USsg7kBE2Q)*</p>
 
 ## Introduction
 eCommerce Website [NodeJs]
