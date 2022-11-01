@@ -24,8 +24,8 @@ eCommerce Website [NodeJs]
 
 ## Run server:
 Para Iniciar el sevidor en forma local:
-### Run server: `nodemon server.js - CLUSTER`  --> modo Cluster
-### Run server: `nodemon server.js ` --> modo Fork
+#### Run server: `nodemon server.js - CLUSTER`  --> modo Cluster
+#### Run server: `nodemon server.js ` --> modo Fork
 
 ## Heroku:
 Comandos útiles:
