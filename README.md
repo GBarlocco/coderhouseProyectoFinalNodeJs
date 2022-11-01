@@ -1,6 +1,6 @@
 # LAS TUNICIAS  :cactus:
 
-*<p>[DEMO](https://mototravelgastonbarlocco.netlify.app)*</p>
+*<p>[DEMO](https://lastuniciascoderhouse.herokuapp.com)*</p>
 *<p>[VIDEO MVC](https://youtube.com/watch?v=OtUsP7-1rp8)*</p>
 *<p>[VIDEO API Restul](https://youtube.com/watch?v=OtUsP7-1rp8)*</p>
 
@@ -17,9 +17,14 @@ eCommerce Website [NodeJs]
 [![las-tunicias-7.jpg](https://i.postimg.cc/Qx6p2shW/las-tunicias-7.jpg)](https://postimg.cc/svhQWkBV)
 [![las-tunicias-8.jpg](https://i.postimg.cc/TPbg5Dmr/las-tunicias-8.jpg)](https://postimg.cc/jWsLGCM5)
 
-## Solución:
+### Endpoints:
+- / --> home
+- /signup --> signup
+- /bienvenida --> bienvenida.
+- /formAddProduct --> agregar productos [usuarios admin].
+- /serverData --> datos del servidor [usuarios admin].
 
-### Usuarios:
+### Usuario:
 - User: admin, pass: 123456.
 
 ## Run server:
@@ -53,7 +58,6 @@ git push origin master
 
 
 ## Libraries
-
 | Library                                                          | Description                 |
 | ---------------------------------------------------------------- | --------------------------------------- |
 | [Artillery](https://www.npmjs.com/package/artillery)             | Testing server - developers             |
@@ -81,6 +85,7 @@ git push origin master
 - [Documentation](https://nodejs.org/es/) Nodejs
 - [Documentation](https://es.wikipedia.org/wiki/Protocolo_de_transferencia_de_hipertexto) HTTP
 - [Documentation](https://en.wikipedia.org/wiki/Socket.IO) Socket.io
+- [Documentation](https://smartbear.com/learn/performance-monitoring/api-endpoints/#:~:text=Simply%20put%2C%20an%20endpoint%20is,of%20a%20server%20or%20service.) Endpoints
 - [Documentation](https://www.postman.com) Postman
 - [Documentation](https://aws.amazon.com/es/microservices/) Microservicios
 - [Documentation](https://developer.mozilla.org/es/docs/Glossary/MVC) MVC
@@ -91,7 +96,6 @@ git push origin master
 - [Documentation](https://es.wikipedia.org/wiki/MongoDB) MongoDB
 - [Documentation](https://es.wikipedia.org/wiki/SQL) SQL
 - [Documentation](https://es.wikipedia.org/wiki/NoSQL) NoSQL
-
 
 ## Academy
 > [CODERHOUSE](https://www.coderhouse.com.uy)
@@ -107,7 +111,6 @@ git push origin master
 ## Author
 > <p>Gastón Barlocco. </p>
 > <p>Email: barlocco@hotmail.es </p>
-
 
 ---
 <p align='center'>
