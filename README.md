@@ -17,12 +17,34 @@ eCommerce Website [NodeJs]
 [![las-tunicias-7.jpg](https://i.postimg.cc/Qx6p2shW/las-tunicias-7.jpg)](https://postimg.cc/svhQWkBV)
 [![las-tunicias-8.jpg](https://i.postimg.cc/TPbg5Dmr/las-tunicias-8.jpg)](https://postimg.cc/jWsLGCM5)
 
-### Endpoints:
+## Endpoints:
+
+### General:
 - / --> home
 - /signup --> signup
 - /bienvenida --> bienvenida.
 - /formAddProduct --> agregar productos [usuarios admin].
 - /serverData --> datos del servidor [usuarios admin].
+- /error/:msg --> visualización de errores.
+
+### MVC:
+#### Productos:
+- /api/productos (GET)--> se obtienen todos los productos.
+- /api/productos/:id (GET)--> se obtiene un producto específico por ID.
+- /api/productos/categoria/:categoria (GET) --> se obtienen los productos por una categoría específica.
+- /api/productos/modificar (POST)--> visualización para modificar producto [usuarios admin]..
+- /api/productos/ (POST)--> agregar producto [usuarios admin].
+- /api/productos/:id (PUT)--> modificar producto [usuarios admin].
+- /api/productos/:id (DELETE)--> eliminar producto[usuarios admin].
+
+#### Productos:
+- /api/carrito (GET)--> se visualiza el carrito.
+- /api/carrito/addProduct (POST)--> se agrega el producto al carrito.
+- /api/carrito/deleteProduct (DELETE)--> se elimina un producto específico del carrito
+
+
+### Estructura DB:
+[![imagen-2022-11-01-124056205.png](https://i.postimg.cc/P5dwKQJy/imagen-2022-11-01-124056205.png)](https://postimg.cc/F7nzHcjk)
 
 ### Usuario:
 - User: admin, pass: 123456.
