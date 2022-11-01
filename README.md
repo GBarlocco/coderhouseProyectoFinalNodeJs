@@ -17,32 +17,50 @@ eCommerce Website [NodeJs]
 [![las-tunicias-7.jpg](https://i.postimg.cc/Qx6p2shW/las-tunicias-7.jpg)](https://postimg.cc/svhQWkBV)
 [![las-tunicias-8.jpg](https://i.postimg.cc/TPbg5Dmr/las-tunicias-8.jpg)](https://postimg.cc/jWsLGCM5)
 
-
 ## Solución:
 
 ### Usuarios:
-- User: admin, pass: 123456 --> permite agregar productos.
+- User: admin, pass: 123456.
 
-### Prueba con Artillery:
-#### Modo Cluster:
-- Terminal1: node server.js -CLUSTER
-- Terminal2: artillery quick –-count 50 -n 20 "http://localhost:8080/api/productos" > result_api_productos_CLUSTER.txt
-- Resultados del analisis: result_api_productos_CLUSTER.txt
+## Run server:
+Para Iniciar el sevidor en forma local:
+### Run server: `nodemon server.js - CLUSTER`  --> modo Cluster
+### Run server: `nodemon server.js ` --> modo Fork
 
-#### Modo Fork:
-- Terminal1: node server.js -CLUSTER
-- Terminal2: artillery quick –-count 50 -n 20 "http://localhost:8080/api/productos" > result_api_productos_CLUSTER.txt
-- Resultados del analisis: result_api_productos_FORK.txt
+## Heroku:
+Comandos útiles:
+``` 
+heroku login
 
-#### Run server: `nodemon server.js - CLUSTER`  --> modo Cluster
-#### Run server: `nodemon server.js ` --> modo Fork
+heroku git:clone -a nombreDelProyecto 
 
-### Heroku:
-- [App](https://proyecto-gaston-barlocco.herokuapp.com)
+git add .
+git commit -m "comentario sobre el commit"
+git push heroku master
+```
+
+## github:
+Comandos útiles:
+``` 
+git add .
+git commit -m "comentario sobre el commit"
+git push origin master
+```
 
 ## Test API - Postman
 ![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white)
 > [Documentación API](https://documenter.getpostman.com/view/15433212/2s8YRcNwSy)
+
+
+## Libraries
+
+| Library                                                          | Description                 |
+| ---------------------------------------------------------------- | ----------------------------|
+| [Artillery](https://www.npmjs.com/package/artillery)             | Prueba de carga             |
+| [bcrypt](https://www.npmjs.com/package/bcrypt)                   | Hash passwords              |
+| [cluster](https://www.npmjs.com/package/cluster)                 | Multi-core server           |
+| [connect-mongo](https://www.npmjs.com/package/connect-mongo)     | MongoDB storage connextion  |
+| [dotenv](https://www.npmjs.com/package/dotenv)                   | Environment variables       |
 
 ## Extra
 - [Documentation](https://nodejs.org/es/) Nodejs
