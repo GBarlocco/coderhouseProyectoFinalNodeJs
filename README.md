@@ -67,7 +67,7 @@ eCommerce Website [NodeJs]
 - /profile (GET)--> se visualiza el perfil.
 
 
-### MVC:
+### API Restful:
 #### General:
 - / --> home
 - /signup --> signup
