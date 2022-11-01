@@ -40,9 +40,9 @@ eCommerce Website [NodeJs]
 ### Heroku:
 - [App](https://proyecto-gaston-barlocco.herokuapp.com)
 
-### Documentación de la API - Postman:
-- [Documentación de la API](https://documenter.getpostman.com/view/15433212/2s8YRcNwSy#5d31fe44-5960-4c50-aa33-d9211eb7c199)
-
+## Test API - Postman
+![Postman](https://img.shields.io/badge/Postman-FF6C37?style=for-the-badge&logo=Postman&logoColor=white)
+> [Documentación API](https://documenter.getpostman.com/view/15433212/2s8YRcNwSy)
 
 ## Extra
 - [Documentation](https://nodejs.org/es/) Nodejs
