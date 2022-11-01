@@ -65,9 +65,9 @@ git push origin master
 ## Extra
 - [Documentation](https://nodejs.org/es/) Nodejs
 - [Documentation](https://es.wikipedia.org/wiki/Protocolo_de_transferencia_de_hipertexto) HTTP
-- [Documentation](https://www.npmjs.com/package/nodemon) nodemon
-- [Documentation](https://expressjs.com/es/) express
 - [Documentation](https://www.postman.com) Postman
+- [Documentation](https://aws.amazon.com/es/microservices/#:~:text=Los%20microservicios%20son%20un%20enfoque,servicios%20son%20equipos%20pequeños%20independientes.) Microservicios3
+- [Documentation](https://developer.mozilla.org/es/docs/Glossary/MVC) MVC
 
 ## Academy
 > [CODERHOUSE](https://www.coderhouse.com.uy)
