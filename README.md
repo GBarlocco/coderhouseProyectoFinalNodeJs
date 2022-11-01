@@ -55,19 +55,43 @@ git push origin master
 ## Libraries
 
 | Library                                                          | Description                 |
-| ---------------------------------------------------------------- | ----------------------------|
-| [Artillery](https://www.npmjs.com/package/artillery)             | Prueba de carga             |
-| [bcrypt](https://www.npmjs.com/package/bcrypt)                   | Hash passwords              |
-| [cluster](https://www.npmjs.com/package/cluster)                 | Multi-core server           |
-| [connect-mongo](https://www.npmjs.com/package/connect-mongo)     | MongoDB storage connextion  |
-| [dotenv](https://www.npmjs.com/package/dotenv)                   | Environment variables       |
+| ---------------------------------------------------------------- | --------------------------------------- |
+| [Artillery](https://www.npmjs.com/package/artillery)             | Testing server - developers             |
+| [bcrypt](https://www.npmjs.com/package/bcrypt)                   | Hash passwords                          |
+| [cluster](https://www.npmjs.com/package/cluster)                 | Multi-core server                       |
+| [connect-mongo](https://www.npmjs.com/package/connect-mongo)     | MongoDB storage connextion              |
+| [dotenv](https://www.npmjs.com/package/dotenv)                   | Environment variables                   |
+| [ejs](https://www.npmjs.com/package/ejs)                         | Embedded JS templates                   |
+| [express](https://www.npmjs.com/package/express)                 | Framework for NodeJs                    |
+| [express-session](https://www.npmjs.com/package/express-session) | Session for express                     |
+| [log4js](https://www.npmjs.com/package/log4js)                   | Log framework for NodeJs                |
+| [minimist](https://www.npmjs.com/package/minimist)               | Parse argument options                  |
+| [mongoose](https://www.npmjs.com/package//mongoose)              | MongoDB tool                            |
+| [multer](https://www.npmjs.com/package/multer)                   | Middleware - Uploading files            |
+| [nodemailer](https://www.npmjs.com/package/nodemailer)           | Send emails from NodeJs                 |
+| [nodemon](https://www.npmjs.com/package/nodemon)                 | Send emails from NodeJs                 |
+| [passport](https://www.npmjs.com/package/passport)               | Authentication middleware               |
+| [passport-jwt](https://www.npmjs.com/package/passport-jwt)       | Authentication JWT                      |
+| [passport-local](https://www.npmjs.com/package/passport-local)   | Local authenticatipn                    |
+| [PM2](https://www.npmjs.com/package/pm2)                         | Process manager for NodeJs              |
+| [socket.io](https://www.npmjs.com/package/socket.io)             | Real-Time communication                 |
+| [twilio](https://www.npmjs.com/package/twilio)                   | Internet and telecommunications networks|
 
 ## Extra
 - [Documentation](https://nodejs.org/es/) Nodejs
 - [Documentation](https://es.wikipedia.org/wiki/Protocolo_de_transferencia_de_hipertexto) HTTP
+- [Documentation](https://en.wikipedia.org/wiki/Socket.IO) Socket.io
 - [Documentation](https://www.postman.com) Postman
-- [Documentation](https://aws.amazon.com/es/microservices/#:~:text=Los%20microservicios%20son%20un%20enfoque,servicios%20son%20equipos%20pequeños%20independientes.) Microservicios3
+- [Documentation](https://aws.amazon.com/es/microservices/) Microservicios
 - [Documentation](https://developer.mozilla.org/es/docs/Glossary/MVC) MVC
+- [Documentation](https://es.wikipedia.org/wiki/JavaScript) JavaScript
+- [Documentation](https://es.wikipedia.org/wiki/TypeScriptC) TypeScript
+- [Documentation](https://es.wikipedia.org/wiki/HTML) HTML
+- [Documentation](https://es.wikipedia.org/wiki/CSS) CSS
+- [Documentation](https://es.wikipedia.org/wiki/MongoDB) MongoDB
+- [Documentation](https://es.wikipedia.org/wiki/SQL) SQL
+- [Documentation](https://es.wikipedia.org/wiki/NoSQL) NoSQL
+
 
 ## Academy
 > [CODERHOUSE](https://www.coderhouse.com.uy)
